@@ -170,6 +170,10 @@
             background: rgba(102, 126, 234, 0.05);
             border-radius: 15px;
             border-left: 4px solid #667eea;
+            min-height: 180px; /* Added: Ensure consistent height for timeline items */
+            display: flex; /* Added: Use flexbox for better content alignment */
+            flex-direction: column; /* Added: Stack content vertically */
+            justify-content: center; /* Added: Center content vertically */
         }
 
         .timeline-item::before {
@@ -320,12 +324,16 @@
             background: #667eea;
         }
 
-        .achievement-card, .timeline-item {
+        .achievement-card {
             background: rgba(102, 126, 234, 0.05);
             padding: 25px;
             border-radius: 15px;
             border-left: 4px solid #667eea;
             transition: transform 0.3s ease;
+            min-height: 200px; /* Added: Ensure consistent height for achievement cards */
+            display: flex; /* Added: Use flexbox for better content alignment */
+            flex-direction: column; /* Added: Stack content vertically */
+            justify-content: center; /* Added: Center content vertically */
         }
 
         .achievement-card:hover, .timeline-item:hover {
@@ -443,6 +451,7 @@
             transition: background 1.5s ease-out;
         }
 
+        /* Responsive Adjustments for better display */
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -467,6 +476,73 @@
             .social-links {
                 flex-direction: column;
                 align-items: center;
+            }
+
+            /* Adjustments for swiper slides on smaller screens */
+            .swiper-slide {
+                padding: 5px; /* Reduced padding */
+            }
+
+            .timeline-item, .achievement-card {
+                padding: 15px; /* Reduced padding */
+                min-height: unset; /* Allow height to adjust based on content */
+            }
+
+            .timeline-title, .achievement-title {
+                font-size: 1.1em; /* Slightly smaller font */
+            }
+
+            .timeline-description, .achievement-description {
+                font-size: 0.95em; /* Slightly smaller font */
+            }
+
+            .skill-diagram {
+                width: 80px; /* Smaller skill circles */
+                height: 80px;
+            }
+
+            .skill-circle {
+                font-size: 1em; /* Smaller font in skill circles */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .section {
+                padding: 15px;
+            }
+
+            .section h2 {
+                font-size: 1.8em;
+                margin-bottom: 20px;
+            }
+
+            .timeline-item, .achievement-card {
+                padding: 10px;
+            }
+
+            .timeline-date {
+                font-size: 0.8em;
+            }
+
+            .timeline-title, .achievement-title {
+                font-size: 1em;
+            }
+
+            .timeline-subtitle {
+                font-size: 0.9em;
+            }
+
+            .timeline-description, .achievement-description {
+                font-size: 0.9em;
+            }
+
+            .skill-diagram {
+                width: 70px;
+                height: 70px;
+            }
+
+            .skill-circle {
+                font-size: 0.9em;
             }
         }
     </style>
@@ -834,7 +910,7 @@
             sectionObserver.observe(section);
         });
 
-        // Intersection Observer for skill bar animations
+        // Intersection Observer for skill bar animations (if any remain)
         const skillBars = document.querySelectorAll('.skill-progress');
         const skillBarObserver = new IntersectionObserver((entries, observer) => {
             entries.forEach(entry => {
